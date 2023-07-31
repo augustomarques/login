@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: login
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  output:
+    ansi:
+      enabled: always
+  logging:
+    level:
+      org.springframework: ERROR
+      br.com.amarques: DEBUG
+    pattern:
+      console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+      file: "%d %p %c{1.} [%t] %m%n"
+    file: app.log
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

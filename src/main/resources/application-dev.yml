@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/login
+    username: root
+    password: password
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+application:
+  security:
+    jwt:
+      access-token:
+        secret-key: d3ba1c0d33ea0c97dac49073757936c52059f3611af1a7c1d41dd9bb3c00ce9d # 0Ch@v&1D&2Enc0d&3D&c0d&4D05S1st&m@6D&7L0g1n8+Access-DEV
+        expiration: 86400000 # a day
+      refresh-token:
+        secret-key: f7fc78a5ebd772bedbd24b8bb7965a811a898c4c0a67de7021c02d60052f8f61 # 0Ch@v&1D&2Enc0d&3D&c0d&4D05S1st&m@6D&7L0g1n8+Refresh-DEV
+        expiration: 604800000 # 7 days
