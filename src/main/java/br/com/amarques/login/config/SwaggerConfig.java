@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
                 ),
                 @Server(
                         description = "PROD ENV",
-                        url = "https://login.amarques-dev.com"
+                        url = "https://login.augusto-dev.com/"
                 )
         },
         security = {
