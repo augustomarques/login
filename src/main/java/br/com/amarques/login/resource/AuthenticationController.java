@@ -4,6 +4,7 @@ import br.com.amarques.login.dto.form.AuthenticationRequest;
 import br.com.amarques.login.dto.form.RefreshTokenForm;
 import br.com.amarques.login.dto.form.RegisterRequest;
 import br.com.amarques.login.dto.view.AuthenticationResponse;
+import br.com.amarques.login.dto.view.UserView;
 import br.com.amarques.login.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +26,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @Operation(summary = "Register a new user")
-    public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<UserView> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(service.register(request));
     }
 

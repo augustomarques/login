@@ -6,6 +6,7 @@ import br.com.amarques.login.dto.form.AuthenticationRequest;
 import br.com.amarques.login.dto.form.RefreshTokenForm;
 import br.com.amarques.login.dto.form.RegisterRequest;
 import br.com.amarques.login.dto.view.AuthenticationResponse;
+import br.com.amarques.login.dto.view.UserView;
 import br.com.amarques.login.exceptions.ExpiredTokenException;
 import br.com.amarques.login.exceptions.InvalidTokenException;
 import br.com.amarques.login.exceptions.NotFoundException;
@@ -34,7 +35,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     @Transactional
-    public AuthenticationResponse register(RegisterRequest request) {
+    public UserView register(RegisterRequest request) {
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -43,7 +44,7 @@ public class AuthenticationService {
                 .build();
 
         repository.save(user);
-        return createNewTokensAndRevokeTheOldOnes(user);
+        return new UserView(user.getId(), user.getFirstname(), user.getLastname(), user.getEmail());
     }
 
     @Transactional
