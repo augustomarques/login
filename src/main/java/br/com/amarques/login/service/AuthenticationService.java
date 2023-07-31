@@ -105,4 +105,10 @@ public class AuthenticationService {
 
         return new AuthenticationResponse(accessToken, refreshToken);
     }
+
+    public UserView me(String refreshToken) {
+        final String email = accessTokenService.extractUsername(refreshToken);
+        final User user = getUserByEmail(email);
+        return new UserView(user.getId(), user.getFirstname(), user.getLastname(), user.getEmail());
+    }
 }

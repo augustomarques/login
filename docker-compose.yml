@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:8.0.33
+    container_name: login-mysql
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_USER: user-docker
+      MYSQL_PASSWORD: docker
+      MYSQL_DATABASE: login
+    ports:
+      - "3306:3306"
+    networks:
+      - login-network
+
+  api-login:
+    image: augustomarques/login
+    container_name: login-app
+    build: .
+    restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8080
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: user-docker
+      DB_PASSWORD: docker
+    ports:
+      - "8080:8080"
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      - login-network
+
+networks:
+  login-network:
+    driver: bridge
